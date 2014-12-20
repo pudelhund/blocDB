@@ -1,0 +1,27 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top"> 
+	<div class="container-fluid"> 
+		
+		<ul class="nav navbar-nav">
+			<li><a>Rangliste (<%= @typeText %>)</a></li>
+			<!--<li class="divider-vertical"></li>
+			<li><%= link_to "Nach Punkten", rankings_points_path %></li>
+			<li class="divider-vertical"></li>
+			<li><%= link_to "Nach Anzahl absolvierter Routen", rankings_amount_path %></li>-->
+		</ul>
+
+		<form class="navbar-form navbar-right" role="search">
+			<div class="form-group">
+				<select id="group_select">
+					<option value="Alle" <%= !params[:gender] ? "selected=\"selected\"" : "" %>>Alle</option>
+					<option value="f" <%= params[:gender] == "f" ? "selected=\"selected\"": "" %>>Damen</option>
+					<option value="m" <%= params[:gender] == "m" ? "selected=\"selected\"" : "" %>>Herren</option>
+				</select>
+			</div>
+		</form>
+		
+		<ul class="nav navbar-nav navbar-right">
+			<li class="divider-vertical"></li>
+			<li>&nbsp;&nbsp;&nbsp;</li>
+		</ul>
+	</div>
+</div>

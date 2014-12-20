@@ -1,0 +1,44 @@
+<ul class="list-group">
+
+	<li class="list-group-item">
+		<h4>Wände</h4>
+	</li>
+	<li class="list-group-item">
+		<span class="badge"><%= wallCount(location.id) %></span>
+		Begehbare Wände
+	</li>
+
+	<li class="list-group-item">
+		<h4>Boulder</h4>
+	</li>
+
+	<ul class="list-group">
+		<li class="list-group-item">
+			<span class="badge"><%= boulderCount(1, location.id) %></span>Aktiv
+		</li>
+		<li class="list-group-item">
+			<% boulders_last_week = newRoutesSinceLastWeek(location.id) %>
+			<span class="badge"><%= boulders_last_week.size %></span>
+			<% if boulders_last_week.size > 0 %>
+				<%= link_to "Neue Routen in der letzten Woche", 'boulders/lastweek' %>
+			<% else %>
+				Neue Routen in der letzten Woche
+			<% end %>
+		</li>
+		<%
+			if is_admin?
+				levels = get_levels_internal(location.id)
+			else
+				levels = get_levels_external(location.id)
+			end
+			levels.each { |level|
+		%>
+			<li class="list-group-item">
+			<span class="badge"><%= boulderCountLevel(level, location.id) %></span>
+			Level <%= image_tag get_level_icon(level) %>
+			</li>
+		<%
+			}
+		%>
+	</ul>
+</ul>

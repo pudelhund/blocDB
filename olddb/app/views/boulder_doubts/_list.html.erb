@@ -1,0 +1,31 @@
+<table id="boulder_doubts" class="display">
+	<thead>
+		<tr>
+			<th title="erledigt / nicht erledigt"></th>
+			<th>Route</th>
+			<!--<th>betrifft User</th>-->
+			<th title="Leistung korrigieren">Leistung korrigieren</th>
+			<th>von User</th>
+			<th>Grund</th>
+			<th class="hide">erstellt am</th>
+			<th>erstellt am</th>
+			<th title="erledigen">erledigt</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @boulder_doubts.each do |doubt| %>
+			<tr>
+				<td class="center" id="doubt_status_<%= doubt.id %>"><%= image_tag "levels/" + ((doubt.status == 0) ? "5" : "3") + ".png" %></td>
+				<td><%= doubt.boulder.name %></td>
+				<!--<td><%= doubt.user.username %></td>-->
+				<td><%= render_captured(doubt.boulder, false, false, doubt.user.id, current_user.id, true) %></td>
+				<td><%= doubt.author.username %></td>
+				<td><%= doubt.description %></td>
+				<td><%= doubt.created_at %></td>
+				<td><%= format_date(doubt.created_at, nil) %></td>
+				<td><input type="checkbox" <%= (doubt.status == 1) ? 'checked="checked"' : '' %> onclick="toggleDoubtStatus(<%= doubt.id %>)"/></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

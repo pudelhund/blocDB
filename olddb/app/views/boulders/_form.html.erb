@@ -1,0 +1,37 @@
+<% location = get_location %>
+
+<%= semantic_form_for(@boulder) do |f| %>
+  <% if @boulder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@boulder.errors.count, "error") %> prohibited this boulder from being saved:</h2>
+
+      <ul>
+      <% @boulder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.inputs do %>
+    <%= f.input :name, :required => true %>
+    <%= f.input :level_intern, :required => true, :as => :select, :collection => get_levels_internal(), :label => 'Level (intern)' %>
+    <%= f.input :level_public, :required => true, :as => :select, :collection => get_levels_external(), :label => 'Level' %>
+    <%= f.input :color_id, :required => true, :as => :select, :collection => Color.find(:all, :order => :name), :label => 'Grifffarbe' %>
+    <% if @is_new == false %>
+      <%= f.input :points, :label => 'Punkte' %>
+      <%= f.input :status, :as => :boolean, :label => 'Aktiv' %>
+    <% else %>
+      <%= f.input :points, :as => :hidden, :label => 'Punkte' %>
+      <%= f.input :status, :as => :hidden, :input_html => { :value => "1" }, :label => 'Aktiv' %>
+    <% end %>
+    <%= f.input :wall_from, :as => :select, :collection => Wall.where('location_id = ?', location.id).order(:name), :label => 'Wand von' %>
+    <%= f.input :wall_to, :as => :select, :collection => Wall.where('location_id = ?', location.id).order(:name), :label => 'Wand bis' %>
+    <%= f.input :creators, :as => :select, :required => true, :collection => User.where('is_creator = ?', true).order(:username), :label => 'Schrauber' %>
+  <% end %>
+
+  <%= f.actions do %>
+      <%= f.action :submit, :as => :button, :button_html => { :name => 'boulder_form_save' }, :label => "Speichern" %>
+      <%= f.action :submit, :as => :button, :button_html => { :name => 'boulder_form_save_and_new' }, :label => "Speichern und Neu" %>
+  <% end %>
+
+<% end %>

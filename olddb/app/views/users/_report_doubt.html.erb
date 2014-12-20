@@ -1,0 +1,12 @@
+<% if(current_user) %>
+	<h3>Benutzer <%= @user.username %> anzweifeln</h3>
+	<h4>Route: <%= @boulder.name %> </h4>
+	<!--<p>Falls Sie diesen Benutzer auf dieser Strecke bereits angezweifelt haben, wird der vorherige Eintrag überschrieben!</p>-->
+	<div class="field">
+		<textarea id="doubt_for_<%= @boulder.id %>"></textarea>
+	</div>
+	<div class="actions">
+		<a class="btn btn-info" href="javascript:submitDoubt(<%= @boulder.id %>, <%= @user.id %>, <%= current_user.id %>)">Leistung anzweifeln</a>
+	</div>
+
+<% end %>

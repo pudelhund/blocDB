@@ -1,0 +1,35 @@
+<%= render 'admin/navigation' %>
+
+<p id="notice"><%= notice %></p>
+
+<table id="colors" class="display">
+  <thead>
+    <tr>
+      <th>Icon</th>
+      <th>Name</th>
+      <th>Kürzel</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @colors.each do |color| %>
+      <tr>
+        <td><%= color.icon_url ? (image_tag color.icon_url.to_s, :size => '16x16') : '' %></td>
+        <td><%= color.name %></td>
+        <td><%= color.shortcut %></td>
+        <td>
+          <% if is_admin? %>
+            <%= link_to image_tag("edit.png"), edit_color_path(color), {:class => "icon edit"} %>
+          <% end %>
+        </td>
+        <td>
+          <% if is_admin? %>
+            <%= link_to image_tag("delete.png"), color, method: :delete, confirm: 'Are you sure?', :class => "icon delete" %>        
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

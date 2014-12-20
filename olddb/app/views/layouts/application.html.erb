@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Boulder DB</title>
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.5, maximum-scale=1.2, user-scalable=yes" />-->
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body data-target=".bs-docs-sidebar" data-spy="scroll" data-twttr-rendered="true">
+
+	<hidden id="is_admin" value="<%= is_admin? %>"></hidden>
+	<hidden id="logged_in" value="<%= current_user ? true : false %>"></hidden>
+	<hidden id="current_user_id" value="<%= current_user ? current_user.id : '-1' %>"></hidden>
+
+	<% if current_user %>
+		<%= render :partial => 'layouts/header-loggedin' %>
+	<% else %>
+		<%= render :partial => 'layouts/header-anonym' %>
+	<% end %>
+
+	<% if params[:controller] != 'index' || current_user %>
+		<% location = get_location %>
+		<% indexName = "BoulderDB" %>
+		<% headerStyle = 'background: url("/assets/diamant-cut.jpg"); background-position: center 0px; background-size:100% auto;' %>
+		<% if !location.nil? %>
+			<% indexName = location.name %>
+			<% if (location.banner_url.to_s != '') %>
+				<% headerStyle = 'background: url("' + location.banner_url.to_s + '"); background-position: center 0px; background-size:100% auto;' %>
+			<% end %>
+		<% end %>
+		<% clazz = ''
+		if params[:controller] == 'index'
+			clazz = 'jumbotron-index'
+		end %>
+		<div class="jumbotron <%= clazz %>" style="<%= headerStyle %>">
+			<h1><%= indexName %></h1>
+		</div>
+	<% end %>
+
+	<%= yield %>
+
+	<%= render :partial => 'layouts/footer' %>
+
+</body>
+</html>

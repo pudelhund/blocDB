@@ -1,0 +1,37 @@
+<%= render 'admin/navigation' %>
+<p id="notice"><%= notice %></p>
+
+<div class="options">
+	<div class="page-header">
+		<%= image_tag '/assets/preferences_system.png', :size => '100x100' %>
+		<h1>Optionen <small>konfigurieren</small></h1>
+	</div>
+	<%= form_tag "/options/save" do %>
+		<div class="alert alert-info">
+			<% location = get_location %>
+			<% if location.nil? %>
+				Hiermit werden die Optionen global und standortübergreifend eingestellt. Wenn du standort bezogene Einstellungen machen willst, musst du den Standort erst auswählen.
+			<% else %>
+				Hiermit werden die Optionen für den Standort "<%= location.name %>" eingestellt.
+			<% end %>		
+		</div>
+		<table id="options" class="form">
+
+			<% @options.each do |optionname| %>
+				<tr class="<%= cycle('odd', 'even') %>">
+					<td class="label">
+						<%=t optionname %>
+					</td>
+					<td class="value">
+						<input type="text" name="values[<%= optionname %>]" value="<%= get_option(optionname) %>"/>
+					</td>
+				</tr>
+			<% end %>
+			<tr class="actions">
+				<td colspan="3">
+					<span><%= submit_tag "Speichern", class: "btn" %></span>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</div>

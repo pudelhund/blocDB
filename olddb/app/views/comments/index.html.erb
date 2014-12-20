@@ -1,0 +1,41 @@
+<h1>Listing comments</h1>
+
+<table>
+  <tr>
+    <th>Author</th>
+    <th>Text</th>
+    <th>Boulder</th>
+    <th>Vote</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= 
+        if comment.author.nil?
+            ""
+        else
+            comment.author.username 
+        end
+    %></td>
+    <td><%= comment.text %></td>
+    <td><%=
+    	if comment.boulder.nil?
+    		puts ""
+    	else
+    		comment.boulder.name
+    	end
+    %></td>
+    <td><%= comment.vote %></td>
+    <td><%= link_to 'Show', comment, {:class => "show"} %></td>
+    <td><%= link_to 'Edit', edit_comment_path(comment), {:class => "edit"} %></td>
+    <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Comment', new_comment_path %>

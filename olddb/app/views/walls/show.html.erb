@@ -1,0 +1,21 @@
+<% if @wall.image? %>
+  <%= image_tag @wall.image_url.to_s %>
+<% end %>
+<table class="show-data">
+  <tr class="odd">
+    <td class="label">Name:</td>
+    <td class="value"><%= @wall.name %></td>
+  </tr>
+  <tr class="even">
+    <td class="label">Beschreibung:</td>
+    <td class="value"><%= @wall.description %></td>
+  </tr>
+  <tr class="odd">
+    <td class="label">Standort:</td>
+    <td class="value"><%= @wall.location.name %></td>
+  </tr>
+</table>
+
+<% if is_admin? %>
+  <%= link_to 'Edit', edit_wall_path(@wall), {:class => "edit btn btn-info"} %>
+<% end %>

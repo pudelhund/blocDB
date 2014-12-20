@@ -1,0 +1,91 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top"> 
+    <div class="container-fluid">
+        <span class="navbar-brand">Vergleich zwischen <%= @user1.username %> und <%= @user2.username %></span>
+		<div class="nav-collapse pull-right"> 
+          <ul class="nav navbar-nav">
+		  <% if current_user %>
+			 <li class="divider-vertical"></li>
+             <li>
+                <form class="navbar-form navbar-left">
+                     <div class="form-group">
+                         Meine Leistung vergleichen mit:
+                         <%= render_compare_select() %>
+                     </div>
+                 </from>
+             </li>
+			 <li class="divider-vertical"></li>
+		  <% end %>
+		  </ul>
+		</div>
+    </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<table id="compares" class="display">
+    <thead>
+        <tr>
+            <th><%= @user1.username %></th>
+            <th><%= @user2.username %></th>
+			<th <%= is_logged_in?? "" : 'class=hide' %>>anzweifeln</th>
+            <th title="Level">L</th>
+            <th title="Level (intern)" <%= is_admin?? "" : 'class=hide' %>>L</th>
+
+            <th class="hide">Punkte for sorting</th>
+            <th title="Punkte">Punkte</th>
+
+            <th>Tags</th>
+            <th>Wand (von => nach)</th>
+            <th>Farbe</th>
+            <th>Name</th>
+            <th>Schrauber</th>
+            <th class="hide">Rating for sorting</th>
+            <th>Rating</th>
+            <th class="hide">Created for sorting</th>
+            <th>Created</th>
+            <th title="Kommentare"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @conquers.each do |conquer| %>
+        <tr class="<%= compare_class(conquer) %>">
+            <td><%= render_captured(conquer[:boulder], true, false, @user1.id, -1, true) %></td>
+            <% if is_admin? %>
+                <td><%= render_captured(conquer[:boulder], true, false, @user2.id) %></td>
+            <% else %>
+                <td><%= render_captured(conquer[:boulder], true, false, @user2.id, -1, false) %></td>
+            <% end %>
+			<td>
+				<% if current_user && !conquer[:user2].nil? && conquer[:conquer_type2] != 'flash-doubt' && conquer[:conquer_type2] != 'top-doubt'%>
+					<%= link_to image_tag("question.png"), "/users/"+@user2.id.to_s+"/reportdoubt/"+conquer[:boulder].id.to_s, {:class => "icon delete doubt-link", :title => @user2.username + " anzweifeln", :id => "doubt_link_"+conquer[:boulder].id.to_s} %></td>
+				<% end %>
+            <td class="center"><%= image_tag "levels/#{conquer[:boulder].level_public}.png" %></td>
+            <td class="center"><%= image_tag "levels/#{conquer[:boulder].level_intern}.png" %></td>
+
+            <td><%= render_points(conquer[:boulder], false) %></td>
+            <td><%= link_to render_points(conquer[:boulder], true), '/boulders/'+conquer[:boulder].id.to_s+'/climbers/'+@user2.id.to_s, {:id => "boulder_points_"+conquer[:boulder].id.to_s, :class => 'show-climbers'} %></td>
+
+            <td id="boulder_tags_<%= conquer[:boulder].id %>"><%= raw render_tags(conquer[:boulder]) %></td>
+            
+            <td><%= render_wall(conquer[:boulder]) %></td>
+            
+            <td><%= conquer[:boulder].color.nil?? "" : (conquer[:boulder].color.icon_url ? (image_tag conquer[:boulder].color.icon_url.to_s, :size => '16x16', :title => conquer[:boulder].color.name) + ' ' + conquer[:boulder].color.name : conquer[:boulder].color.name) %></td>
+            
+            <td><%= link_to conquer[:boulder].name, conquer[:boulder], {:class => "show", :title => conquer[:boulder].name } %></td>
+            
+            <td><%= conquer[:boulder].creators.map{ |creator| creator.username }.join(", ") %></td>
+            
+            <td><%= conquer[:boulder].rating %></td>
+            
+            <td><div class="rating" boulder-id="<%= conquer[:boulder].id %>" data-rating="<%= conquer[:boulder].rating %>" data-count="<%= conquer[:boulder].rating_count %>" title="Score: <%= conquer[:boulder].rating %> / <%= conquer[:boulder].rating_count.nil?? '0' : conquer[:boulder].rating_count.to_s %> User <%= !conquer[:boulder].rating_count.nil? && conquer[:boulder].rating_count != 1 ? 'haben' : 'hat' %> diese Route bewertet."></div></td>
+            
+            <td><%= conquer[:boulder].created_at %></td>
+            <td><%= format_date(conquer[:boulder].created_at, nil) %></td>
+            <td><%= render_comments(conquer[:boulder]) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= render 'boulders/tick-popup' %>

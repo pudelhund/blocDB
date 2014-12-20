@@ -1,0 +1,24 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top navbar-functions"> 
+    <div class="container-fluid">
+        <div class="nav-collapse">
+			<div class="navbar-form">
+				<span class="pull-left">Routenfehler</span> 
+				  <ul class="nav navbar-nav pull-right">
+					  <li>
+						<select id="status_select">
+							<option value="all" <%= @status == 'all' ? "selected=\"selected\"" : "" %>>Alle</option>
+							<option value="0" <%= @status == "0" ? "selected=\"selected\"": "" %>>Nicht erledigt</option>
+							<option value="1" <%= @status == "1" ? "selected=\"selected\"" : "" %>>Erledigt</option>
+						</select>
+					  </li>
+				  </ul>
+			</div>
+        </div>
+    </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<%= render 'boulder_errors/list' %>
+
+<!--<%= render 'boulders/tick-popup' %>-->

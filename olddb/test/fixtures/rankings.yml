@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  status: 1
+  points: 1
+  conquer_count: 1
+
+two:
+  user: 
+  status: 1
+  points: 1
+  conquer_count: 1

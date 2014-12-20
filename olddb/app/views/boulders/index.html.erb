@@ -1,0 +1,30 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top navbar-functions"> 
+    <div class="container-fluid">
+        <div class="nav-collapse"> 
+			<ul class="nav navbar-nav">
+				<% if is_admin? %>
+					<li><%= link_to 'Route anlegen', new_boulder_path %></li>
+					<li class="divider-vertical"></li>
+					<li><%= link_to 'Alle Routen (inkl. inaktive)', '/boulders/all' %></li>
+				<% end %>
+				<% if current_user %>
+					<li class="divider-vertical"></li>
+				<% end %>
+			</ul>
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+					Meine Leistung vergleichen mit:
+					<%= render_compare_select() %>
+				</div>
+			</from>
+			<p id="table_filter_placeholder" class="navbar-text navbar-right"></p>
+        </div>
+    </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<%= render 'boulders/list' %>
+
+<%= render 'boulders/tick-popup' %>
+

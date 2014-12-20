@@ -1,0 +1,53 @@
+<% rankings_m = rankingTop3Male(location.id) %>
+<% rankings_f = rankingTop3Female(location.id) %>
+
+<ul class="nav nav-list">
+	<li class="nav-header">Top 3 Männer</li>
+	<li>
+		<table class="table">
+			<thead>
+				<tr>
+					<th title="Platz">Platz</th>
+					<th title="Punkte">Punkte</th>
+					<th title="Benutzer">Benutzer</th>
+					<th title="Anzahl geschaffter Routen">Routen</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% rankings_m.each do |ranking| %>					
+					<tr>
+						<td class="center"><%= ranking.rank %></td>
+						<td class="center"><%= ranking.points %></td>
+						<td><%= link_to ranking.user.username, ranking.user, {:class => ""} %></td>
+						<td><%= ranking.conquer_count %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</li>
+	<li class="nav-header">Top 3 Frauen</li>
+	<li>
+		<table class="table">
+			<thead>
+				<tr>
+					<th title="Platz">Platz</th>
+					<th title="Punkte">Punkte</th>
+					<th title="Benutzer">Benutzer</th>
+					<th title="Anzahl geschaffter Routen">Routen</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% rankings_f.each do |ranking| %>					
+					<tr>
+						<td class="center"><%= ranking.rank %></td>
+						<td class="center"><%= ranking.points %></td>
+						<td><%= link_to ranking.user.username, ranking.user, {:class => ""} %></td>
+						<td><%= ranking.conquer_count %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</li>
+</ul>

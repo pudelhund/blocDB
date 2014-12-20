@@ -1,0 +1,16 @@
+<% if @conquerors.length == 0 %>
+	<p>Bislang hat noch niemand diesen Boulder geschafft.</p>
+<% else %>
+	<ul id="climbers">
+		<% @conquerors.each do |conqueror| %>
+			<li><% if is_admin? %>
+				<% current_user_id = params[:compare_id] ? params[:compare_id] : -1 %>
+                <%= render_captured(@boulder, false, true, conqueror.user.id, current_user_id) %>
+            <% end %>
+			<% if current_user %>
+				<%= link_to image_tag("question.png"), "/users/"+conqueror.user.id.to_s+"/reportdoubt/"+@boulder.id.to_s, {:class => "icon delete doubt-link", :title => conqueror.user.username + " anzweifeln"} %></td>
+			<% end %>
+				<%= image_tag conqueror.user.avatar_url.to_s, :size => '40x40' %><%= conqueror.user.username %></li>
+		<% end %>
+	</ul>
+<% end %>

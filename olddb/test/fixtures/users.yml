@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  username: MyString
+  external_key: MyString
+  email: MyString
+  password: MyString
+  firstname: MyString
+  lastname: MyString
+  gender: MyString
+  birthday: 2012-12-13
+  signature: MyText
+  is_visible: false
+  last_login: 2012-12-13 15:09:48
+  last_activity: 2012-12-13 15:09:48
+  is_creator: false
+  is_admin: false
+
+two:
+  username: MyString
+  external_key: MyString
+  email: MyString
+  password: MyString
+  firstname: MyString
+  lastname: MyString
+  gender: MyString
+  birthday: 2012-12-13
+  signature: MyText
+  is_visible: false
+  last_login: 2012-12-13 15:09:48
+  last_activity: 2012-12-13 15:09:48
+  is_creator: false
+  is_admin: false

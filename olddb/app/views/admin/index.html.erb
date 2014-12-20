@@ -1,0 +1,70 @@
+<%= render 'admin/navigation' %>
+
+<div class="container-fluid" style="margin-top: 30px">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Standort</div>
+				<ul class="list-group">
+					<li class="list-group-item"><%= link_to 'Standorte anzeigen', :locations %></li>
+					<li class="list-group-item"><%= link_to 'Standort anlegen', new_location_path %></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Wände</div>
+				<ul class="list-group">
+					<li class="list-group-item"><%= link_to 'Wände anzeigen', :walls %></li>
+					<li class="list-group-item"><%= link_to 'Wand anlegen', new_wall_path %></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Boulder</div>
+				<ul class="list-group">
+					<li class="list-group-item"><%= link_to 'Boulder anzeigen', :boulders %></li>
+					<li class="list-group-item"><%= link_to 'Boulder anlegen', new_boulder_path %></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Events</div>
+				<ul class="list-group">
+					<li class="list-group-item"><%= link_to 'Events anzeigen', :events %></li>
+					<li class="list-group-item"><%= link_to 'Event anlegen', new_event_path %></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Benutzer</div>
+				<ul class="list-group">
+					<li class="list-group-item"><%= link_to 'Benutzer anzeigen', :users %></li>
+					<li class="list-group-item"><%= link_to 'Benutzer anlegen', new_user_path %></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Griffarben</div>
+				<ul class="list-group">
+					<li class="list-group-item"><%= link_to 'Grifffarben anzeigen', :colors %></li>
+					<li class="list-group-item"><%= link_to 'Grifffarbe anlegen', new_color_path %></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Optionen</div>
+				<ul class="list-group">
+					<li class="list-group-item"><%= link_to 'Optionen anzeigen', :options %></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

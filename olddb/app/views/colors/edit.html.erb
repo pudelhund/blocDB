@@ -1,0 +1,9 @@
+<%= render 'admin/navigation' %>
+
+<div class="color-data">
+	<div class="page-header">
+		<%= @color.icon_url ? (image_tag @color.icon_url.to_s, :size => '16x16', :class => "color-icon") : '' %>
+		<h1><%= @color.name %> <small>Daten</small></h1>
+	</div>
+	<%= render 'form' %>
+</div>

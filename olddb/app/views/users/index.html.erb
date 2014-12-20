@@ -1,0 +1,49 @@
+<%= render 'admin/navigation' %>
+
+<p id="notice"><%= notice %></p>
+
+<table id="users" class="display">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Benutzername</th>
+            <th>E-Mail</th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Geschlecht</th>
+            <th class="hide">Geburtstag for sorting</th>
+            <th>Geburtstag</th>
+            <th>Körpergröße</th>
+            <th>Spannweite</th>
+            <th>Ape-Index</th>
+            <th>Schrauber</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @users.each do |user| %>
+        <tr>
+            <td><%= image_tag user.avatar_url.to_s, :size => '40x40' %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.firstname %></td>
+            <td><%= user.lastname %></td>
+            <td><%= user.gender == 'm' ? 'männlich' : 'weiblich' %></td>
+            <td><%= user.birthday %></td>
+            <td><%= format_date(user.birthday, nil) %></td>
+            <td><%= user.height %></td>
+            <td><%= user.arm_span %></td>
+            <td><%= get_ape_index(user) %></td>
+            <td><%= user.is_creator?? 'ja' : 'nein' %></td>
+            <td><%= link_to "Passwort zurücksetzen", "/users/"+user.id.to_s+"/resetpassword", :remote => true, confirm: 'Wirklich zurücksetzen?', :disable_with => 'resetten...' %></td>
+            <td><%= link_to image_tag("show.png"), user, {:class => "icon show"} %></td>
+            <td><%= link_to image_tag("edit.png"), edit_user_path(user), {:class => "icon edit"} %></td>
+            <td><%= link_to image_tag("delete.png"), user, method: :delete, confirm: 'Wirklich löschen?', :class => "icon delete" %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

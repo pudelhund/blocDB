@@ -1,0 +1,61 @@
+<table id="boulders" class="display">
+	<thead>
+		<tr>
+			<th title="Geschafft / Nicht geschafft"></th>
+			<th title="Level">L</th>
+			<th title="Level (intern)" <%= is_admin?? "" : 'class=hide' %>>L</th>
+			<th class="hide">Punkte for sorting</th>
+			<th title="Punkte (Anzahl Begeher)">Punkte</th>
+			<th>Tags</th>
+			<th>Events</th>
+			<th>Wand (von => nach)</th>
+			<th>Farbe</th>
+			<th>Name</th>
+			<th>Schrauber</th>
+			<th class="hide">Rating for sorting</th>
+			<th>Rating</th>
+			<th class="hide">Created for sorting</th>
+			<th>Created</th>
+			<th title="Kommentare"></th>
+			<th <%= is_admin?? "" : 'class=hide' %>></th>
+			<th <%= is_admin?? "" : 'class=hide' %>></th>
+			<th <%= is_logged_in?? "" : 'class=hide' %>></th>
+			<th <%= is_admin?? "" : 'class=hide' %>></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @boulders.each do |boulder| %>
+		<% @ownRating = current_user.nil? ? nil : BoulderRating.where(:boulder_id => boulder.id, :user_id => current_user.id).first
+		   @ownRatingText = @ownRating.nil? ? 'Ich habe diese Route noch nicht bewertet.' : 'Meine eigene Wertung: ' + @ownRating.rating.to_s
+		%>
+			<tr class="<%= is_doubt(boulder) ? "doubt" : "" %>">
+				<td class="center"><%= render_captured(boulder) %></td>
+				<td class="center"><%= image_tag get_level_icon(boulder.level_public) %></td>
+				<td class="center"><%= image_tag get_level_icon(boulder.level_intern) %></td>
+				<td><%= render_points(boulder, false) %></td>
+				<td><%= link_to render_points(boulder, true), '/boulders/'+boulder.id.to_s+'/climbers', {:id => "boulder_points_"+boulder.id.to_s, :class => 'show-climbers'} %></td>
+				<td id="boulder_tags_<%= boulder.id %>"><%= raw render_tags(boulder) %></td>
+				<td><%= raw render_eventlogos(boulder) %></td>
+				<td><%= render_wall(boulder) %></td>
+				<td><%= boulder.color.nil?? "" : (boulder.color.icon_url ? (image_tag boulder.color.icon_url.to_s, :size => '16x16', :title => boulder.color.name) : '') + ' ' +boulder.color.name %></td>
+				<td><%= link_to boulder.name, boulder, {:class => "show", :title => boulder.name } %></td>
+				<td><%= boulder.creators.map{ |creator| creator.username }.join(", ") %></td>
+				<td><%= boulder.rating %></td>
+				<td class="rating-cell">
+					<div class="rating" boulder-id="<%= boulder.id %>" data-rating="<%= boulder.rating %>" data-count="<%= boulder.rating_count %>" title="Score: <%= boulder.rating %> / <%= boulder.rating_count.nil?? '0' : boulder.rating_count.to_s %> User <%= !boulder.rating_count.nil? && boulder.rating_count != 1 ? 'haben' : 'hat' %> diese Route bewertet. <%= @ownRatingText %>"></div>
+					<% if @ownRating != nil %>
+						<%= image_tag("bullet_valid.png", {:class => 'my-rating', :title => @ownRatingText }) %>
+					<% end %>
+				</td>
+				<td><%= boulder.created_at %></td>
+				<td><%= format_date(boulder.created_at, nil) %></td>
+				<td><%= render_comments(boulder) %></td>
+				<td><%= link_to image_tag("edit.png", {:title => 'Bearbeiten'}), edit_boulder_path(boulder), {:class => "icon edit"} %></td>
+				<td><%= link_to image_tag("delete.png", {:title => 'Deaktivieren'}), "/boulders/"+boulder.id.to_s+"/deactivate", {:class => "icon delete"}, data: { confirm: 'Are you sure?'} %></td>
+				<td><%= link_to image_tag("exclamation.png"), "/boulders/"+boulder.id.to_s+"/reporterror", {:class => "icon delete error-link", :title => "Fehler melden"} %></td>
+				<td><input type="checkbox" name="massedit" value="<%= boulder.id %>"/></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

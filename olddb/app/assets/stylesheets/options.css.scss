@@ -1,0 +1,47 @@
+// Place all the styles related to the Options controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* Optionen */
+div.options {
+	margin: 0 20px;
+
+	div.page-header img {
+		float: left;
+		margin-right: 40px;
+		margin-bottom: 40px;
+	}
+
+	form {
+		clear: both;
+		margin: 20px 40px 20px 120px;
+	}
+
+	table {
+		width: 40%;
+
+		td {
+			padding: 8px 8px 0 8px;
+		}
+
+		tr.odd {
+			background-color: #EEE;
+		}
+
+		td.value {
+			text-align: right;
+		}
+
+		tr.actions td {
+			text-align: right;
+			span {
+				margin: 0 0 0 25px;
+			}
+		}
+	}
+
+	p {
+		margin-right: 25%;
+	}
+}

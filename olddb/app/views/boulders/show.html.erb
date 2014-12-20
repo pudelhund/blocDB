@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<table class="show-data">
+  <tr class="odd">
+    <td class="label">Name:</td>
+    <td class="value"><%= @boulder.name %></td>
+  </tr>
+  <% if is_admin? %>
+    <tr class="even">
+      <td class="label">Level (nur intern):</td>
+      <td class="value"><%= image_tag get_level_icon(@boulder.level_intern) %> (<%= @boulder.level_intern %>)</td>
+    </tr>
+  <% end %>
+  <tr class="even">
+    <td class="label">Level:</td>
+    <td class="value"><%= image_tag get_level_icon(@boulder.level_public) %> (<%= @boulder.level_public %>)</td>
+  </tr>
+  <tr class="odd">
+    <td class="label">Farbe:</td>
+    <td class="value"><%= @boulder.color.nil?? "" : (@boulder.color.icon_url ? (image_tag @boulder.color.icon_url.to_s, :size => '16x16', :title => @boulder.color.name) : @boulder.color.name) %></td>
+  </tr>
+  <tr class="even">
+    <td class="label">Punkte:</td>
+    <td class="value"><%= @boulder.points %></td>
+  </tr>
+  <tr class="odd">
+    <td class="label">Status:</td>
+    <td class="value"><%= @boulder.status %></td>
+  </tr>
+  <tr class="even">
+    <td class="label">Entfert am:</td>
+    <td class="value"><%= format_date(@boulder.remove_date, nil) %></td>
+  </tr>
+  <tr class="odd">
+    <td class="label">Bewertungen (Anzahl):</td>
+    <td class="value"><%= @boulder.rating_count.nil?? '0' : @boulder.rating_count.to_s %></td>
+  </tr>
+  <tr class="even">
+    <td class="label">Bewertung:</td>
+    <td class="value"><%= @boulder.rating %></td>
+  </tr>
+  <tr class="odd">
+    <td class="label">Begeher (Anzahl):</td>
+    <td class="value"><%= @boulder.boulder_conquerors.where('event_id = ?', 0).size.to_s %></td>
+  </tr>
+  <tr class="even">
+    <td class="label">Modifiziert am:</td>
+    <td class="value"><%= format_date(@boulder.manual_modified, nil) %></td>
+  </tr>
+  <tr class="odd">
+    <td class="label">Deaktiviert am:</td>
+    <td class="value"><%= format_date(@boulder.disable_date, nil) %></td>
+  </tr>
+  <tr class="even">
+    <td class="label">Wand von:</td>
+    <td class="value">
+      <%=
+        if @boulder.wallfrom.nil?
+          puts "-"
+        else
+          @boulder.wallfrom.name
+        end
+      %>
+    </td>
+  </tr>
+  <tr class="odd">
+    <td class="label">Wand bis:</td>
+    <td class="value">
+      <%=
+        if @boulder.wallto.nil?
+          puts "-"
+        else
+          @boulder.wallto.name
+        end
+      %>
+    </td>
+  </tr>
+  <tr class="even">
+    <td class="label">Standort:</td>
+    <td class="value"><%= @boulder.get_location.name %></td>
+  </tr>
+  <tr class="odd">
+    <td class="label">Schrauber:</td>
+    <td class="value">
+      <%= @boulder.creators.map{ |creator| creator.username }.join(", ") %>
+    </td>
+  </tr>
+</table>
+
+<% if is_admin? %>
+  <%= link_to 'Edit', edit_boulder_path(@boulder), {:class => "edit btn btn-info"} %>
+<% end %>

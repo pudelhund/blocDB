@@ -1,0 +1,61 @@
+<%= render 'admin/navigation' %>
+<p id="notice"><%= notice %></p>
+
+<table id="events" class="display">
+    <thead>
+        <tr>
+            <th>Laufend</th>
+            <th>Name</th>
+            <th>Beschreibung</th>
+            <th>Ersteller</th>
+            <th class="hide">Von for sorting</th>
+            <th>Von</th>
+            <th class="hide">Bis for sorting</th>
+            <th>Bis</th>
+            <th>Ziel</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @events.each do |event| %>
+            <tr>
+                <td><%= event.is_active ? 'ja' : 'nein'  %></td>
+                <td>
+                    <% if event.is_active %>
+                        <%= link_to event.name, '/events/'+event.id.to_s+'/boulders' %>
+                    <% else %>
+                        <%= link_to event.name, '/rankings/event/'+event.id.to_s %>
+                    <% end %>
+                </td>
+                <td><%= event.description %></td>
+                <td><%= event.creator.username %></td>
+                <td><%= event.date_from %></td>
+                <td><%= format_date(event.date_from, nil) %></td>
+                <td><%= event.date_to %></td>
+                <td><%= format_date(event.date_to, nil) %></td>
+                <td><%= I18n.t event.goal %></td>
+                <td>
+                    <% if event.is_active %>
+                        <%= link_to image_tag("show.png"), '/events/'+event.id.to_s+'/boulders', {:class => "icon show", :title => event.name} %>
+                    <% else %>
+                        <%= link_to image_tag("show.png"), '/rankings/event/'+event.id.to_s, {:class => "icon show", :title => event.name} %>
+                    <% end %>
+                    
+                </td>
+                <td>
+                    <% if is_admin? %>
+                        <%= link_to image_tag("edit.png"), edit_event_path(event), {:class => "icon edit"} %>
+                    <% end %>
+                </td>
+                <td>
+                    <% if is_admin? %>
+                        <%= link_to image_tag("delete.png"), event, method: :delete, confirm: 'Are you sure?', :class => "icon delete" %>                    
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

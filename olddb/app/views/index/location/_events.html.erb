@@ -1,0 +1,11 @@
+<% events = getEvents(location.id) %>
+
+<ul class="nav nav-list">
+	<% if events.size > 0 %>
+		<% events.each do |event| %>
+			<li><%= link_to event.name, event %></li>
+		<% end %>
+	<% else %>
+		<li>Aktuell gibt es keine laufenden Events</li>
+	<% end %>
+</ul>

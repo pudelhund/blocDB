@@ -1,0 +1,35 @@
+<%= render 'admin/navigation' %>
+
+<p id="notice"><%= notice %></p>
+
+<table id="walls" class="display">
+  <thead>
+    <tr>
+    <th>Name</th>
+    <th>Beschreibung</th>
+    <th>Standort</th>
+    <th></th>
+    <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @walls.each do |wall| %>
+      <tr>
+        <td><%= raw wall.name %></td>
+        <td><%= wall.description %></td>
+        <td><%= wall.location.name %></td>
+        <td>
+            <% if is_admin? %>
+                <%= link_to image_tag("edit.png"), edit_wall_path(wall), {:class => "icon edit"} %>
+            <% end %>
+        </td>
+        <td>
+            <% if is_admin? %>
+                <%= link_to image_tag("delete.png"), wall, method: :delete, confirm: 'Are you sure?', :class => "icon delete" %>                    
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

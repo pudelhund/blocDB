@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  boulder_id: 1
+  user_id: 1
+  type: 
+  event_id: 1
+
+two:
+  boulder_id: 1
+  user_id: 1
+  type: 
+  event_id: 1

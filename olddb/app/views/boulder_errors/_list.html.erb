@@ -1,0 +1,33 @@
+<table id="boulder_errors" class="display">
+	<thead>
+		<tr>
+			<th title="erledigt / nicht erledigt"></th>
+			<th>Route</th>
+			<th>Standort</th>
+			<th>Wand (von => nach)</th>
+			<th>Farbe</th>
+			<th>von User</th>
+			<th>Fehlerbeschreibung</th>
+			<th class="hide">erstellt am</th>
+			<th>erstellt am</th>
+			<th title="erledigen"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @boulder_errors.each do |error| %>
+			<tr>
+				<td class="center" id="error_status_<%= error.id %>"><%= image_tag "levels/" + ((error.status == 0) ? "5" : "3") + ".png" %></td>
+				<td><%= link_to error.boulder.name, edit_boulder_path(error.boulder), {:class => "icon edit", :title => error.boulder.name } %></td>
+				<td><%= error.getLocationName %></td>
+				<td><%= render_wall(error.boulder) %></td>
+				<td><%= error.boulder.color.nil?? "" : (error.boulder.color.icon_url ? (image_tag error.boulder.color.icon_url.to_s, :size => '16x16', :title => error.boulder.color.name) : '') + ' ' +error.boulder.color.name %></td>
+				<td><%= link_to error.user.username, error.user %></td>
+				<td><%= error.error %></td>
+				<td><%= error.created_at %></td>
+				<td><%= format_date(error.created_at, nil) %></td>
+				<td><input type="checkbox" <%= (error.status == 1) ? 'checked="checked"' : '' %> onclick="toggleErrorStatus(<%= error.id %>)"/></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

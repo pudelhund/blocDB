@@ -1,0 +1,344 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
+ *= require dataTables/src/demo_table_jui
+ *= require formtastic
+ *= require_self
+ *= require_tree .
+ */
+table th {
+	text-align: left;
+}
+tr.odd {
+	background-color: #DEDEDE;
+}
+img.comments-link {
+	cursor: pointer;
+}
+table tr td.center {
+	text-align: center;
+}
+a.icon:hover {
+	background: none;
+}
+a.show {
+	display: inline;
+}
+
+div.dataTables_wrapper {
+	margin: 10px;
+}
+
+/* Popup für Routen abhaken */
+div#tick-popup {
+	position: absolute;
+	border: 1px solid #333;
+	background-color: white;
+	-moz-border-radius: 4px; /* Firefox */
+	-webkit-border-radius: 4px; /* Safari, Chrome */
+	-khtml-border-radius: 4px; /* Konqueror */
+	border-radius: 4px; /* CSS3 */
+	-webkit-box-shadow: 4px 4px 2px #373737;
+    -moz-box-shadow: 4px 4px 2px #373737;
+    box-shadow: 4px 4px 2px #373737;
+}
+
+div#tick-popup span {
+	padding: 1px 4px 1px 20px;
+	background-color: #ccc;
+	width: 100%;
+	-moz-border-top-left-radius: 4px; /* Firefox */
+	-webkit-border-top-left-radius: 4px; /* Safari, Chrome */
+	-khtml-border-top-left-radius: 4px; /* Konqueror */
+	border-top-left-radius: 4px; /* CSS3 */
+	-moz-border-top-right-radius: 4px; /* Firefox */
+	-webkit-border-top-right-radius: 4px; /* Safari, Chrome */
+	-khtml-border-top-right-radius: 4px; /* Konqueror */
+	border-top-right-radius: 4px; /* CSS3 */
+}
+
+div#tick-popup span span {
+	text-align: right;
+}
+
+div#tick-popup ul {
+	list-style: none;
+}
+
+/* Routen Tags wie new oder mod */
+span.tag {
+	background-color: orange;
+	color: white;
+	padding: 1px 3px;
+	margin: 1px;
+}
+
+/* Fussbereich der Seite */
+div.footer-spacer {
+	height: 40px; 
+	min-height: 60px;
+}
+div#footer {
+	margin-top: 20px;
+	clear: both;
+}
+
+/* Popup in dem die Begeher angezeigt werden */
+ul#climbers {
+	list-style: none;
+}
+ul#climbers li img {
+	margin: 2px 10px 2px 0px;
+}
+
+/* Benutzerprofil, Passwort äandern, Registrieren, etc. */
+div.user-profile {
+	margin: 0 20px;
+}
+
+div.user-profile div.page-header img {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+div.user-profile form {
+	clear: both;
+}
+
+/* Daten der Objekte anzeigen. show.erb.html */
+div.show-data {
+	width: 700px;
+	margin: 0 20px;
+}
+
+div.show-data div.page-header img {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+div.show-data table.show-data {
+	clear: both;
+	margin: 20px 40px 20px 120px;
+}
+
+table.show-data td.label {
+	background: none;
+	line-height: 14px;
+	color: #555;
+	width: 250px;
+}
+
+table.show-data .auto-scroll {
+	height: 200px;
+	width: 300px;
+	overflow: scroll;
+	border: 1px solid #ccc;
+	-moz-border-top-left-radius: 4px; /* Firefox */
+	-webkit-border-top-left-radius: 4px; /* Safari, Chrome */
+	-khtml-border-top-left-radius: 4px; /* Konqueror */
+	border-top-left-radius: 4px; /* CSS3 */
+	-moz-border-top-right-radius: 4px; /* Firefox */
+	-webkit-border-top-right-radius: 4px; /* Safari, Chrome */
+	-khtml-border-top-right-radius: 4px; /* Konqueror */
+	border-top-right-radius: 4px; /* CSS3 */
+	padding: 6px;
+}
+
+table.show-data ul.auto-scroll {
+	list-style: none;
+	margin-left: 0;
+}
+table.show-data ul.auto-scroll li img {
+	margin: 2px 10px 2px 0px;
+}
+
+
+/* Daten einer Grifffarbe anzeigen */
+div.color-data {
+	margin: 0 20px;
+}
+
+div.color-data div.page-header img {
+	float: left;
+	margin: 20px 10px 10px 0;
+}
+
+div.color-data form {
+	clear: both;
+}
+
+/* Header Bereich */
+form#header-login {
+	margin-right: 10px;
+}
+
+form#header-login input.span2 {
+	padding: 2px;
+	margin-top: 6px;
+}
+
+
+/* Farben für LastActivity */
+td.activity-green {
+	color: green;
+}
+
+td.activity-yellow {
+	color: #AB8300;
+}
+
+td.activity-red {
+	color: red;
+}
+
+
+/* Vergleichsansicht */
+table#compares tr.ok {
+	background-color: #FCFFC7;
+}
+
+table#compares tr.good {
+	background-color: #C7FFC8;
+}
+
+table#compares tr.bad {
+	background-color: #FFC7C7;
+}
+
+/* Logos der Events in der Boulder-Ansicht */
+span.event-logos img {
+	display: inline;
+	margin: 2px 2px;
+	cursor: pointer;
+}
+
+div.massedit-toolbar {
+	float: right;
+	padding-right: 6px;
+}
+
+div.massedit-toolbar select {
+	padding: 0px;
+	margin: 0 4px 0 0;
+	height: auto;
+	line-height: auto;
+}
+
+tr.doubt
+{
+	background-color: #FFC7C7;
+}
+
+
+td.rating-cell {
+	white-space: nowrap;
+	width: 110px;
+}
+
+td.rating-cell img.my-rating {
+	float: right;
+}
+
+td.rating-cell div {
+	display: inline;
+	float: left;
+}
+
+div.locations {
+	width: 1170px;
+	margin-left: auto;
+	margin-right: auto;
+	content: "";
+	overflow: hidden;
+}
+
+div.locations div.box {
+	width: 550px;
+	float: left;
+	margin: 10px;
+}
+
+div.locations div.box div.accordion-heading {
+	border-color: #999;
+}
+
+div.locations div.box a.accordion-toggle {
+	color: #1b1b1b;	
+}
+
+div.locations div.box div.accordion-group {
+	border-color: #999;
+}
+
+.navbar .divider-vertical
+{
+	height: 50px !important;
+}
+
+.navbar .nav > li > a
+{
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+}
+
+.jumbotron
+{
+	margin: 0px !important;
+	margin-top: 10px !important;
+}
+
+.jumbotron h1
+{
+	font-size: 30pt !important;
+}
+
+.jumbotron-index
+{
+	padding-top: 60px !important;
+	padding-bottom: 60px !important;
+}
+
+#header-login input[type="password"],
+#header-login input[type="text"]
+{
+	height: 26px !important;
+}
+
+/* carousel */
+
+.carousel-caption
+{
+	background: none !important;
+}
+
+.carousel-indicators
+{
+	display: none !important;
+}
+
+.carousel-control
+{
+	line-height: 28px !important;
+	font-size: 55px !important;
+}
+
+#locationSelectionPopup table td 
+{
+	padding: 4px;
+}
+
+#table_filter_placeholder
+{
+	margin-top: 0px;
+}

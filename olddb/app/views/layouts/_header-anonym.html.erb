@@ -1,0 +1,18 @@
+<div class="navbar navbar-inverse navbar-static-top <%= mobile_device? ? '' : 'navbar-fixed-top' %>"> 
+	<div class="container-fluid"> 
+		<div class="offset1"> 
+			<%= form_tag sessions_path,{:class => "navbar-form navbar-left", :id => 'header-login'} do %>
+				<div class="form-group">
+					<%= text_field_tag :username, params[:username], class: "form-control", placeholder: "Username" %>
+					<%= password_field_tag :password, "", class: "form-control", placeholder: "Password" %>
+				</div>
+				<%= submit_tag "Login", class: "btn btn-default" %>
+			<% end %>
+			<ul class="nav navbar-nav navbar-left">
+				<li>
+					<%= link_to "Noch kein Account? Dann registriere dich.", "/users/register", :type => 'button' %>
+				</li>
+			</ul>
+		</div><!-- /.nav-collapse --> 
+	</div><!-- /container-fluid --> 
+</div><!-- /navbar -->

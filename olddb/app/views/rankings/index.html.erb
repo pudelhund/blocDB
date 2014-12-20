@@ -1,0 +1,39 @@
+<% if @event.nil? %>
+	<%= render 'rankings/subheader-default' %>
+<% else %>
+	<%= render 'rankings/subheader-event' %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<table id="rankings" class="display">
+	<thead>
+		<tr>
+			<th title="Group" class="hide">Group</th>
+			<th title="Platz">Platz</th>
+			<th title="Score"><%= @goal == "points" ? "Punkte / (Punkteabstand zum nächsten Platz)" : "Anzahl absolvierter Routen"  %></th>
+			<th title="Benutzer">Benutzer</th>
+			<th title="Gruppe">Gruppe</th>
+			<th title="Letzter Login">Letzte Aktivität</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @counter = 0 %>
+		<% @lastPoints = 0 %>
+		<% @rankings.each do |ranking| %>
+			<% @counter = @counter + 1  %>
+			<tr>
+				<td class="chide"><%= ranking.groupText %></td>
+				<td class="center"><%= ranking.rank %></td>
+				<td class="center"><%= @goal == "points" ? getPoints(ranking.points, @lastPoints) : ranking.conquer_count.to_s + ' ('+ ranking.flashed.to_s + ' geflashed)' %></td>
+				<td><%= image_tag ranking.user.avatar_url.to_s, :size => '40x40' %> <%= link_to ranking.user.username, "/users/" + current_user.id.to_s + "/compareto/" + ranking.user.id.to_s, {:class => ""} %></td>
+				<td><%= getGroup(ranking.user.gender) %></td>
+				<td class="<%= ranking.user.last_activity >= 1.week.ago ? 'activity-green' : ranking.user.last_activity >= 2.week.ago ? 'activity-yellow' : 'activity-red' %>"><%= format_date(ranking.user.last_activity,nil) %></td>
+				<% @lastPoints = ranking.points %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<br />

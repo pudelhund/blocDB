@@ -1,0 +1,29 @@
+<%
+	if index == @start_index
+		itemClass = 'row active'
+	else 
+		itemClass = 'row'
+	end
+%>
+<div id="locationContentBox_<%=index%>" class="<%=itemClass%>">
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Boulder</div>
+			<%= render partial: 'index/location/boulder', object: location, as: 'location' %>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div class="panel panel-default">
+			<div class="panel-heading">Ranking</div>
+			<%= render partial: 'index/location/ranking', object: location, as: 'location' %>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">Events</div>
+			<div class="panel-body">
+				<%= render partial: 'index/location/events', object: location, as: 'location' %>
+			</div>
+		</div>
+	</div>
+</div>

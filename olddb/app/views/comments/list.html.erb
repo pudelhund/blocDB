@@ -1,0 +1,29 @@
+
+<% if @comments.size == 0 %>
+	No comments
+<% else %>
+	<% @comments.each do |comment| %>
+	    <div>
+	        <dl>
+	            <dt>
+	                <%= format_date(comment.created_at) %>
+	                <%= comment.author.username %>
+	                <%= (!current_user.nil? and (is_admin? or (comment.author.id == current_user.id))) ? ('<a class="icon delete" title="löschen" href="javascript:deleteComment('+comment.id.to_s+', '+@boulder_id+')">' + image_tag("delete.png") + "</a>").html_safe : "" %>
+	            </dt>
+	            <dd><%= comment.text %></dd>
+	        </dl>
+	    </div>
+	<% end %>
+<% end %>
+
+<% if(current_user) %>
+
+	<h3>Neuer Kommentar</h3>
+	<div class="field">
+		<textarea id="comment_for_<%= @boulder_id %>"></textarea>
+	</div>
+	<div class="actions">
+		<a class="btn btn-info" href="javascript:submitComment(<%= @boulder_id %>, <%= current_user.id %>)">Kommentar absenden</a>
+	</div>
+
+<% end %>

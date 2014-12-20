@@ -1,0 +1,37 @@
+<%= semantic_form_for(@location) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.inputs do %>
+    <%= f.input :name, :required => true %>
+    <%= f.input :address, :input_html => { :rows => 7, :cols => 60 } %>
+    <%= f.input :logo, :as => :file %>
+    <% if @location.logo? %>
+    	<li class="input optional">
+    		<label class="label"></label>
+    		<%= image_tag @location.logo_url.to_s, :size => '100x100' %>
+    	</li>
+    <% end %>
+    <%= f.input :banner, :as => :file %>
+    <% if @location.banner? %>
+    	<li class="input optional">
+    		<label class="label"></label>
+    		<%= image_tag @location.banner_url.to_s, :size => '220x100' %>
+    	</li>
+    <% end %>
+  <% end %>
+
+  <%= f.actions do %>
+      <%= f.action :submit, :as => :button %>
+  <% end %>
+
+<% end %>

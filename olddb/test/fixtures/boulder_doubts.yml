@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  boulder: 
+  user: 
+  author: 
+  description: MyString
+  status: 1
+
+two:
+  boulder: 
+  user: 
+  author: 
+  description: MyString
+  status: 1

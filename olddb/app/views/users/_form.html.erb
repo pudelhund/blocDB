@@ -1,0 +1,43 @@
+<%= semantic_form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user.errors.count %> Fehler verhindern das Speichern:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.inputs do %>
+    <%= f.input :username, :label => 'Benutzername' %>
+    <% if is_admin? %>
+      <%= f.input :external_key, :label => 'ID aus Fremdsystem' %>
+    <% end %>
+    <%= f.input :email, :label => 'E-Mail' %>
+    <%= f.input :firstname, :label => 'Vorname' %>
+    <%= f.input :lastname, :label => 'Nachname' %>
+    <%= f.input :gender, :as => :select, :collection => [["männlich", "m"],["weiblich", "f"]], :label => 'Geschlecht' %>
+    <%= f.input :birthday, :as => :string, :input_html => { :class => 'date-input' }, :label => 'Geburtsdatum' %>
+    <%= f.input :height, :as => :number, :label => 'Körpergröße (in cm)' %>
+    <%= f.input :arm_span, :as => :number, :label => 'Spannweite (in cm)' %>
+    <li class="input optional numeric stringish">
+      <label class="label" for="">Ape-Index</label>
+      <span><%= if get_ape_index(@user) == '' then 'Wird aus Körpergröße und Spannweite errechnet' else get_ape_index(@user).to_s + ' cm' end %></span>
+    </li>
+    <%= f.input :signature, :input_html => { :rows => 7, :cols => 60 }, :label => 'Signatur' %>
+    <%= f.input :is_visible, :as => :boolean, :label => 'Sichtbar' %>
+    <% if is_admin? %>
+      <%= f.input :is_creator, :as => :boolean, :label => 'Schrauber' %>
+      <%= f.input :is_admin, :as => :boolean, :label => 'Admin' %>
+    <% end %>
+    <%= f.input :avatar, :as => :file %>
+  <% end %>
+
+  <%= f.actions do %>
+      <%= f.action :submit, :as => :button, :label => 'Speichern' %>
+      <%= link_to 'Passwort ändern', '/users/'+@user.id.to_s+'/chgpassword' %>
+  <% end %>
+
+<% end %>

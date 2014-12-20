@@ -1,0 +1,72 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top"> 
+    <div class="container-fluid">
+        <%= link_to @event.name, @event, {:class => 'navbar-brand'} %>
+        <div class="nav-collapse"> 
+          <ul class="nav">
+            <% if @event.is_active %>
+              <li class="divider-vertical"></li>
+              <li><%= link_to 'Boulder', '/events/'+@event.id.to_s+'/boulders' %></li>
+            <% end %>
+            <li class="divider-vertical"></li>
+            <li><%= link_to 'Ranking', '/rankings/event/'+@event.id.to_s %></li>
+          </ul>
+        </div>
+    </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<div class="show-data">
+  <div class="page-header">
+    <%= image_tag @event.logo_url.to_s, :size => '100x100' %>
+    <h1>Event <small><%= @event.name %></small></h1>
+  </div>
+
+    <table class="show-data">
+      <tr>
+        <td class="label">Name:</td>
+        <td class="value"><%= @event.name %></td>
+      </tr>
+      <tr>
+        <td class="label">Beschreibung:</td>
+        <td class="value"><%= @event.description %></td>
+      </tr>
+      <tr>
+        <td class="label">Ersteller:</td>
+        <td class="value"><%= @event.creator.username %></td>
+      </tr>
+      <tr>
+        <td class="label">Datum von:</td>
+        <td class="value"><%= format_date(@event.date_from, nil) %></td>
+      </tr>
+      <tr>
+        <td class="label">Datum bis:</td>
+        <td class="value"><%= format_date(@event.date_to, nil) %></td>
+      </tr>
+      <tr>
+        <td class="label">Ziel:</td>
+        <td class="value"><%= I18n.t @event.goal %></td>
+      </tr>
+      <tr>
+        <td class="label">Teilnehmer:</td>
+        <td class="value">
+          <ul class="auto-scroll">
+            <% @event.participants.each do |user| %>
+              <li><%= image_tag user.avatar_url.to_s, :size => '40x40' %><%= user.username %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">Routen:</td>
+        <td class="value">
+          <ul class="auto-scroll">
+            <% @event.boulders.each do |boulder| %>
+              <li><%= boulder.name %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+</div>

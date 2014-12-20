@@ -1,0 +1,11 @@
+<%= render 'admin/navigation' %>
+
+<div class="user-profile">
+	<div class="page-header">
+		<% if @event.logo? %>
+			<%= image_tag @event.logo_url.to_s %>
+		<% end %>
+		<h1>Event <small><%= @event.name %></small></h1>
+	</div>
+	<%= render 'form' %>
+</div>

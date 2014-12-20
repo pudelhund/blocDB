@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  username: postgres
+  password: postgres
+  database: routen_db
+
+test:
+  adapter: postgresql
+  username: myapp
+  password: password # from psql setup, see Postgresql
+  database: myapp_development
+
+production:
+  adapter: postgresql
+  username: postgres
+  password: postgres
+  database: routen_db

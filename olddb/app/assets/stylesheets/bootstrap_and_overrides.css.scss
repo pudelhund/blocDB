@@ -1,0 +1,14 @@
+@import "font-awesome";
+$baseFontFamily: 'FontAwesome';
+@import "bootstrap";
+
+.navbar-form
+{
+	margin-top: 15px !important;
+	color: #fff;
+}
+
+.navbar-form select
+{
+	color: #000;
+}

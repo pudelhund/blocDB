@@ -1,0 +1,47 @@
+<%= render 'admin/navigation' %>
+
+<p id="notice"><%= notice %></p>
+
+<table id="locations" class="display">
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Adresse</th>
+      <th>Banner</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @locations.each do |location| %>
+      <tr>
+        <td>
+		<% if location.logo? %>
+			<%= image_tag location.logo_url.to_s, :size => '100x100' %>
+		<% end %>
+		</td>
+        <td><%= location.id %></td>
+        <td><%= location.name %></td>
+        <td><%= simple_format(location.address) %></td>
+        <td>
+		<% if location.banner? %>
+			<%= image_tag location.banner_url.to_s, :size => '200x100' %>
+		<% end %>
+        </td>
+        <td>
+          <% if is_admin? %>
+            <%= link_to image_tag("edit.png"), edit_location_path(location), {:class => "icon edit"} %>
+          <% end %>
+        </td>
+        <td>
+          <% if is_admin? %>
+            <%= link_to image_tag("delete.png"), location, method: :delete, confirm: 'Are you sure?', :class => "icon delete" %>        
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

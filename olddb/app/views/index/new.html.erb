@@ -1,0 +1,66 @@
+<% if !current_user.nil? %>
+	<div class="container-fluid" style="margin-top: 30px">
+		<%= render partial: 'location', object: get_location, locals: {index: 0} %>
+	</div>
+	
+	<%
+		if @show_location_select
+		%>
+		<script>openModalDialog('/index/showlocationselect', {'modal':true, height: 500, width: 500, title: "Standort auswählen"});</script>
+		<%
+	end
+	%>
+<% else %>
+<div id="locationsCarousel" class="carousel slide" start-index="<%= @start_index.to_s %>" data-interval="false" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<% index = 0 %>
+		<% @locations.each do |location| %>
+			<li data-target="#locationsCarousel" data-slide-to="<%= index.to_s %>"></li>
+			<% index = index + 1 %>
+		<% end %>
+	</ol>
+	
+	<div class="carousel-inner">
+		<% index = 0 %>
+		<% @locations.each do |location| %>
+			<%
+				
+				if index == @start_index
+					itemClass = 'item active'
+				else
+					itemClass = 'item'
+				end
+			%>
+			<div class="<%= itemClass %>" data-index="<%= index.to_s %>">
+				<div class="carousel-caption">
+					<h1><%= location.name %></h1>
+				</div>
+				<% if location.banner? %>
+					<%= image_tag location.banner_url(:carousel).to_s %>
+				<% end %>
+			</div>
+			<% index = index + 1 %>
+		<% end %>
+	</div>
+	
+	<% 
+	if @locations.count > 1 then
+	%>
+	<a class="carousel-control left" href="#locationsCarousel" data-slide="prev">&lsaquo;</a>
+	<a class="carousel-control right" href="#locationsCarousel" data-slide="next">&rsaquo;</a>
+	<%
+	end
+	%>
+</div>
+
+<div id="locationContent">
+	<% index = 0 %>
+	<% @locations.each do |location| %>
+		<%= render partial: 'location', object: location, locals: {index: index} %>
+		<% index = index + 1 %>
+	<% end %>
+</div>
+
+<%
+end
+%>

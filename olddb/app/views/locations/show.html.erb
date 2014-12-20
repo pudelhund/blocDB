@@ -1,0 +1,22 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top"> 
+	<div class="container-fluid"> 
+		<p>&gt;&nbsp;Standorte&nbsp;&gt;&nbsp;<%= @location.name %></p>
+	</div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<table class="show-data">
+  <tr>
+    <td class="label">Name:</td>
+    <td class="value"><%= @location.name %></td>
+  </tr>
+  <tr>
+    <td class="label">Adresse:</td>
+    <td class="value"><%= @location.address %></td>
+  </tr>
+</table>
+
+
+<%= link_to 'Edit', edit_location_path(@location), {:class => "edit btn btn-info"} %> |
+<%= link_to 'Back', locations_path %>

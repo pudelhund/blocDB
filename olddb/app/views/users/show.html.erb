@@ -1,0 +1,70 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top"> 
+    <div class="container-fluid"> 
+        <p>&gt;&nbsp;Benutzer&nbsp;&gt;&nbsp;<%= @user.username %></p>
+    </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+
+<table class="show-data">
+  <tr>
+    <td class="label">Benutzername:</td>
+    <td class="value"><%= @user.username %></td>
+  </tr>
+  <tr>
+    <td class="label">External key:</td>
+    <td class="value"><%= @user.external_key %></td>
+  </tr>
+  <tr>
+    <td class="label">E-Mail:</td>
+    <td class="value"><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td class="label">Vorname:</td>
+    <td class="value"><%= @user.firstname %></td>
+  </tr>
+  <tr>
+    <td class="label">Nachname:</td>
+    <td class="value"><%= @user.lastname %></td>
+  </tr>
+  <tr>
+    <td class="label">Geschlecht:</td>
+    <td class="value"><%= @user.gender %></td>
+  </tr>
+  <tr>
+    <td class="label">Geburtsdatum:</td>
+    <td class="value"><%= @user.birthday %></td>
+  </tr>
+  <tr>
+    <td class="label">Signatur:</td>
+    <td class="value"><%= @user.signature %></td>
+  </tr>
+  <tr>
+    <td class="label">Sichtbar</td>
+    <td class="value"><%= @user.is_visible %></td>
+  </tr>
+  <tr>
+    <td class="label">Zuletz eingeloggt:</td>
+    <td class="value"><%= @user.last_login %></td>
+  </tr>
+  <tr>
+    <td class="label">Letzte Aktivität:</td>
+    <td class="value"><%= @user.last_activity %></td>
+  </tr>
+  <tr>
+    <td class="label">Schrauber:</td>
+    <td class="value"><%= @user.is_creator %></td>
+  </tr>
+  <tr>
+    <td class="label">Admin:</td>
+    <td class="value"><%= @user.is_admin %></td>
+  </tr>
+  <tr>
+    <td class="label"></td>
+    <td class="value"></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_user_path(@user), {:class => "edit btn btn-info"} %> |
+<%= link_to 'Back', users_path %>

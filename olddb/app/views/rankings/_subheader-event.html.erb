@@ -1,0 +1,36 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top"> 
+	<div class="container-fluid">
+        <%= link_to @event.name, @event, {:class => 'navbar-brand'} %>
+        <div class="nav-collapse"> 
+          <ul class="nav">
+            <% if @event.is_active %>
+              <li class="divider-vertical"></li>
+              <li><%= link_to 'Boulder', '/events/'+@event.id.to_s+'/boulders' %></li>
+            <% end %>
+            <li class="divider-vertical"></li>
+            <li class="active"><%= link_to 'Ranking', '/rankings/event/'+@event.id.to_s %></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li>
+                <form class="navbar-form">
+                    <select id="group_select" class="span2">
+                        <option value="Alle" <%= !params[:gender] ? "selected=\"selected\"" : "" %>>Alle</option>
+                        <option value="f" <%= params[:gender] == "f" ? "selected=\"selected\"": "" %>>Damen</option>
+                        <option value="m" <%= params[:gender] == "m" ? "selected=\"selected\"" : "" %>>Herren</option>
+                    </select>
+                </form>
+			<li>
+          </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="user-profile">
+  <div class="page-header">
+    <% if @event.logo? %>
+      <%= image_tag @event.logo_url.to_s %>
+    <% end %>
+    <h1>Event <small><%= @event.name %></small></h1>
+  </div>
+</div>

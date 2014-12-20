@@ -1,0 +1,57 @@
+<div class="navbar navbar-list navbar-inverse navbar-static-top navbar-functions"> 
+	<div class="container-fluid">
+        <div class="nav-collapse"> 
+          <ul class="nav navbar-nav">
+            <li class="dropdown <%=cp('/locations/new')%> <%=cp('/locations')%>">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="<%= "#{request.fullpath}" %>">Standort <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><%= link_to "Übersicht", "/locations" %></li>
+                    <li><%= link_to "Standort anlegen", "/locations/new" %></li>
+                </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown <%=cp('/walls/new')%> <%=cp('/walls')%>">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="<%= "#{request.fullpath}" %>">Wände <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><%= link_to "Übersicht", "/walls" %></li>
+                    <li><%= link_to "Wand anlegen", "/walls/new" %></li>
+                </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown <%=cp('/boulders/new')%> <%=cp('/boulders')%>">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="<%= "#{request.fullpath}" %>">Boulder <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><%= link_to "Übersicht", "/boulders" %></li>
+                    <li><%= link_to "Boulder anlegen", "/boulders/new" %></li>
+                </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown <%=cp('/events/new')%> <%=cp('/events')%>">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="<%= "#{request.fullpath}" %>">Events <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><%= link_to "Übersicht", "/events" %></li>
+                    <li><%= link_to "Event anlegen", "/events/new" %></li>
+                </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown <%=cp('/users/new')%> <%=cp('/users')%>">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="<%= "#{request.fullpath}" %>">Benutzer <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><%= link_to "Übersicht", "/users" %></li>
+                    <li><%= link_to "Benutzer anlegen", "/users/new" %></li>
+                </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown <%=cp('/colors/new')%> <%=cp('/colors')%>">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="<%= "#{request.fullpath}" %>">Grifffarben <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><%= link_to "Übersicht", "/colors" %></li>
+                    <li><%= link_to "Grifffarbe anlegen", "/colors/new" %></li>
+                </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class=""><%= link_to "Optionen", "/options" %></li>
+          </ul>
+        </div>
+    </div>
+</div>

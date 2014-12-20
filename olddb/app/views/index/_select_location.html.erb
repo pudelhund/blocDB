@@ -1,0 +1,29 @@
+<div id="locationSelectionPopup">
+	<p>Du hast dich bisher nicht für einen Standort entschieden. Bitte wähle einen Standort aus, der dir nach dem Login angezeigt wird.
+	Der ausgewählte Standort wird in deinem Profil gespeichert. Diese Meldung wird danach nicht mehr angezeigt.</p> 
+	
+	<% index = 0 %>
+	<table>
+	<% @locations.each do |location| %>
+		<tr>
+			<td>
+			<% if location.logo? %>
+				<%= image_tag location.logo_url.to_s, :size => '180x180' %>
+			<% end %>
+			</td>
+			<td>
+				<b><i class="icon-caret-right"></i>
+					<a class="select-location" href="?lid=<%= location.id.to_s %>" location-index="<%= index.to_s %>">
+						<%= location.name %>
+					</a>
+				</b>
+			</td>
+		</tr>
+		<% index = index + 1 %>
+	<% end %>
+	</table>
+	
+	<script>
+	//setLocationSelectClickHandlers();
+	</script>
+</div>

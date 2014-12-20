@@ -1,0 +1,91 @@
+form.formtastic {
+	margin: 20px 40px 20px 120px;
+	width: 700px;
+}
+
+form.formtastic .label,
+table.form td.label {
+	background: none;
+	line-height: 14px;
+	color: #555;
+	width: 250px;
+}
+
+form.formtastic input,
+form.formtastic select {
+	padding: 2px;
+	height: auto;
+}
+
+form.formtastic textarea {
+	padding: 2px;
+}
+
+.formtastic .stringish input {
+	max-width: 250px;
+}
+
+.formtastic .password input,
+.formtastic .string input {
+	max-width: 250px;
+}
+
+.formtastic li.boolean label {
+	padding-left: 185px
+}
+
+div.comboselect select.csleft {
+	float: left;
+	height: 150px;
+}
+
+div.comboselect div.cs-buttons {
+	float: left;
+}
+
+div.comboselect div.cs-buttons input {
+	display: block;
+	width: 40px;
+}
+
+div.comboselect select.csright {
+	float: left;
+	height: 150px;
+}
+
+.formtastic .inline-errors {
+	color: #cc0000;
+	margin: 0 0 0 185px;
+}
+
+.formtastic div#error_explanation {
+	background-color: #F2BBBB;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari, Chrome */
+	-khtml-border-radius: 10px; /* Konqueror */
+	border-radius: 10px; /* CSS3 */
+	-webkit-box-shadow: 4px 4px 2px #ccc;
+    -moz-box-shadow: 4px 4px 2px #ccc;
+    box-shadow: 4px 4px 2px #ccc;
+}
+
+.formtastic div#error_explanation h2 {
+	padding: 3px 10px;
+	background-color: #C20C0C;
+}
+
+.formtastic div#error_explanation ul {
+	margin: 10px 30px;
+	list-style: none;
+}
+
+input.date-input,
+.formtastic .string .date-input {
+	background: url(date.png) no-repeat scroll 190px 3px;
+	width: 210px !important; 
+	max-width: 210px;
+}
+
+#compareto-form {
+	margin: 0 0 0 20px;
+}

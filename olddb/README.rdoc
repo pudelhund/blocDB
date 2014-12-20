@@ -1,0 +1,30 @@
+===========================================================================================
+ Routen Datenbank
+===========================================================================================
+Entwickler:
+- Florian Kolb
+- Tobias Veelbehr
+
+
+== Level-Icons für Locations definieren
+ Man kann pro Standort für jedes Level ein eigenes Icon definieren, oder man verwendet die Standard-Icons.
+ Die Icons sind im Pfad
+
+  |-- app
+  |   |-- assets
+  |       |-- images
+
+ zu finden. Direkt darin befinden sich die Standard-Icons, die für jeden Standort verwendet werden, sofern dafür
+ keine eigenen definiert sind. Möchte man nun für einen Standort andere Icons verwenden, dann muss man in der
+ obigen Ordnerstruktur einen neuen Order mit der ID des Standorts als Namen anlegen. An die ID eines Standorts
+ kommt man über die Oberfläche unter Admin -> Standort -> Übersicht. Als Beispiel nehmen wir als ID des Standortes
+ die 5. Dann muss die Ordnerstruktur so aussehen:
+
+  |-- app
+  |   |-- assets
+  |       |-- images
+  |           |-- 5
+
+ Dorthinein kann man jetzt .png Dateien ablegen mit dem Namen des Levels, also z.B. "1.png". Mann muss nicht immer
+ alle verfügbaren Icons austauschen, man kann auch nur ein einziges austauschen, dann werden für die restlichen
+ Level die Standard-Icons benutzt.
